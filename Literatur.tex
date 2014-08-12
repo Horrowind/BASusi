@@ -1,0 +1,72 @@
+\documentclass[a4paper]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+%\usepackage[uprightgreeks]{kpfonts}
+\usepackage[ngerman]{babel}
+%\usepackage{german}
+\usepackage{amsmath}
+
+\usepackage{extarrows}
+\usepackage{amsthm}  
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{bmpsize}
+%\usepackage{mathrsfs}
+%\usepackage{amstext}
+\usepackage{amsfonts, txfonts}
+\usepackage{mathtools}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Makros fuer Satz, Lemma, etc. Umgebungen.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{remark}  %plain ist Standard und ergibt kursiven Text, remark gibt geraden text
+%der Style kann auch für Satz und Lemma verschieden sein: zwischendurcvh mit \newtheoremstyle{..} umstellen
+
+
+\newcommand{\nV}[1]{\ensuremath{\|#1\|_V}}
+\newcommand{\na}[1]{\ensuremath{\|#1\|_a}}
+
+\newcommand{\anstrich}{$\blacktriangleright$ \text{ }}
+\newcommand{\anstrichVariante}{$\square$ \text{ }}
+\newtheorem{satz}{\anstrich Satz}[section]  %section ist oberste Nummerierungshierarchie
+\newtheorem{lemma}[satz]{\anstrich Lemma}  %wegen "`[satz]"' werden Lemmata und Sätze gemeinsam gezählt
+\newtheorem{folgerung}[satz]{\anstrich Folgerung}  %analog für die übrigen-->alle Arten von Umgebungen werden gemeinsam gezählt
+\newtheorem{feststellung}[satz]{\anstrich Feststellung}
+\newtheorem{vereinbarung}[satz]{\anstrich Vereinbarung}
+\newtheorem{definition}[satz]{\anstrich Definition}
+\newtheorem{beispiel}[satz]{\anstrichVariante Beispiel}
+\newtheorem{bemerkung}[satz]{\anstrichVariante Bemerkung}
+\newenvironment{beweis}{\begin{proof}[Beweis]}{\end{proof}}  %vordefiniert ist "`\begin{proof}"' und "`\end{proof}"'
+
+
+\newcommand{\markdef}[1]{\textbf{#1}}  %definiert neues Kommando mit einem Argument (wegen [1]), erlaubt bis zu neun Argumente in einer geschweiften Klammer, die getrennt durch Kommata angegeben werden müssen. In der Definition wird darauf mit "`#1"' zugegriffen
+%Sinn der hiesigen Definition: gib allen definierten Begriffen das Format \markdef{definierter Begriff}, so kann nachträglich diese Markierung global im Dokumentenkopf für alle gleichzietig verändert werden
+
+%erlaubt Wechsel auf neue Seite auch innerhalb einer align-Umgebung etc.
+\allowdisplaybreaks[1]
+
+%----------------------------------------------------------
+\begin{document}
+
+\begin{thebibliography}{-----}
+
+\bibitem[KS99]{l}
+  Karniadakis, Sherwin
+  {\em Spectral hp element methods for CFD},
+
+\bibitem[SB00]{stoer}
+  J. Stoer, R. Burlisch
+  {\em Numerische Mathematik 2},
+  4. Auflage
+  Springer Verlag, Heidelberg 2000.
+
+\bibitem[WEB14]{web}{\em
+    http://me-lrt.de/img/num-403-basisfunktion-finite-elemente-linear.png},
+  18. Januar 2014
+
+\end{thebibliography}
+
+
+\end{document}
