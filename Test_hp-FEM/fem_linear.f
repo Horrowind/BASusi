@@ -1,5 +1,5 @@
 program variationequation
-
+% das ist am Ende gar nicht linear.
 implicit none
 
   integer,   parameter      :: RNP = kind(1.0d0)
