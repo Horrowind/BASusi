@@ -13,24 +13,21 @@ implicit none
   real(RNP), allocatable    :: B(:,:)                 ! system matrix
 
   integer        :: NE=5                  ! Number of elements > 2
+  integer        :: PO=2                  ! Order of polynomes
 
   open (newunit = uni, file = 'equationsystem')
-
-
-
-     allocate (x_h(0:NE), u_h(1:NE-1), f_h(1:NE-1))
-     Allocate (m(1:NE-1,1:NE-1),k(1:NE-1,1:NE-1), B(1:NE-1,1:3))
+  allocate (x_h(0:NE, 0:PO), u_h(1:NE-1, 0:PO), f_h(1:NE-1))
+  allocate (m(1:NE-1,1:NE-1),k(1:NE-1,1:NE-1), B(1:NE-1,1:3))
      
      B = 0
      
-     !RHS
+! RHS
      do i = 1, NE-1
         x_h(i)= real(i)/real(NE)                ! set the grid
-        f_h(i)= (4*PI**2+1)*sin(x_h(i) *2*PI)   ! we will get u(x) =
-        ! sin(2*PI*x) as solution
+        f_h(i)= (4*PI**2+1)*sin(x_h(i) *2*PI)   ! we will get u(x) = sin(2*PI*x) as solution
      end do
      
-  call trapezregel(f_h, NE)                 !integration
+  call trapezregel(f_h, NE)                     !integration
   
   !LHS
   m = mass_matrix(NE)

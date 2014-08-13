@@ -17,8 +17,7 @@ implicit none
   open (newunit = uni, file = 'equationsystem')
 
 
-!  do j = 1,3
-!     NE = NE ** j
+
      allocate (x_h(0:NE), u_h(1:NE-1), f_h(1:NE-1))
      Allocate (m(1:NE-1,1:NE-1),k(1:NE-1,1:NE-1), B(1:NE-1,1:3))
      
@@ -36,6 +35,8 @@ implicit none
   !LHS
   m = mass_matrix(NE)
   k = stiffness_matrix(NE)
+
+  write(*, '(4(E12.5,1X))') k+m
   
 ! solves the equation system by transforming the tridiagonal matrix to vector
   B = MatrixToVector(k+m)
@@ -49,7 +50,7 @@ implicit none
   end do
   write (uni,'(2(E12.5,1X))') 0.0, 1.0          !BC
   deallocate(x_h, u_h, f_h, m, k, B)
-!end do
+
 close (uni)
 contains ! ----------------------------------------
   
