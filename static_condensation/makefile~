@@ -1,0 +1,34 @@
+FC = gfortran
+FOPTS = -ffree-form -O3
+FFLAGS = -Wall
+
+## Rules for Objekt-Files ###########################################################
+%.o: %.f
+	$(FC) $(FOPTS) $(FFLAGS) -I $(BUILDD) -J $(BUILDD) -c $< -o $@
+## Rules for executables ############################################################
+$(BINDIR)/%.exe: $(BUILDD)/%.o
+	$(FC) $(FOPTS) $(FFLAGS) -I $(BUILDD) -J $(BUILDD) $(BUILDD)/*.o -o $@
+
+## Targets ##########################################################################
+.phony: all clean tidy docu plot
+
+all: main
+
+clean:
+	rm -f $(BUILDD)/*.o;
+	rm -f $(BUILDD)/*.mod
+
+
+plot:
+	octave -q $(SRCDIR)/plotoutput.m
+
+tidy: clean
+	rm -f $(BINDIR)/*.exe;
+	rm -rf $(DOCDIR)/*;	
+	touch $(DOCDIR)/index
+	rm -f output/*;
+	touch output/index
+
+
+
+CG
