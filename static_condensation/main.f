@@ -3,9 +3,7 @@ program StaticCondensation
 implicit none
 use module utilities
 
-! constants
 
-integer, parameter ::  RP = selected_real_kind(14) ! real precisionRP
 
 ! variables
 

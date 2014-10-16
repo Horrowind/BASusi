@@ -10,9 +10,9 @@ $(BINDIR)/%.exe: $(BUILDD)/%.o
 	$(FC) $(FOPTS) $(FFLAGS) -I $(BUILDD) -J $(BUILDD) $(BUILDD)/*.o -o $@
 
 ## Targets ##########################################################################
-.phony: all clean tidy docu plot
+.phony: all clean tidy plot
 
-all: main
+all: $(FC) main
 
 clean:
 	rm -f $(BUILDD)/*.o;
@@ -31,4 +31,4 @@ tidy: clean
 
 
 
-CG
+

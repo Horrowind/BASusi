@@ -2,25 +2,42 @@ FC = gfortran
 FOPTS = -ffree-form -O3
 FFLAGS = -Wall
 
+## Modules ##########################################################################
+
+UTIL = utilities.o
+
+UTIF = $(addprefix ,$(UTIL))
+
+
+## Directories ######################################################################
+
+
 ## Rules for Objekt-Files ###########################################################
 %.o: %.f
 	$(FC) $(FOPTS) $(FFLAGS) -I $(BUILDD) -J $(BUILDD) -c $< -o $@
 ## Rules for executables ############################################################
-$(BINDIR)/%.exe: $(BUILDD)/%.o
+%.exe: $(BUILDD)/%.o
 	$(FC) $(FOPTS) $(FFLAGS) -I $(BUILDD) -J $(BUILDD) $(BUILDD)/*.o -o $@
 
 ## Targets ##########################################################################
 .phony: all clean tidy docu plot
 
-all: main
+all: main.exe 
 
 clean:
 	rm -f $(BUILDD)/*.o;
 	rm -f $(BUILDD)/*.mod
 
+docu:
+	doxygen $(SRCDIR)/doxyfile
 
-plot:
-	octave -q $(SRCDIR)/plotoutput.m
+
+
+multiplot:
+	octave -q $(SRCDIR)/multiplot.m
+
+errorplot:
+	octave -q $(SRCDIR)/errorplot.m
 
 tidy: clean
 	rm -f $(BINDIR)/*.exe;
@@ -30,5 +47,7 @@ tidy: clean
 	touch output/index
 
 
+
+main.exe: $(UTIL)
 
 
