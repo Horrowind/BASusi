@@ -12,26 +12,26 @@ real(RP), dimension(:,:), allocatable :: g    ! RHS
 
 integer  :: n, m ! number of elements in x, y direction; total number: 2*m*n (regular grid)
 integer  :: uni
-integer :: i
+integer :: i, j
 
-open(newunit = uni, file = "input")
-  read(uni,*)n
-  read(uni,*)m
-  read(uni,*)a
-  read(uni,*)b
-
-close(uni)  
+read(*,*)n
+read(*,*)m
+read(*,*)a
+read(*,*)b
 
 allocate(V(0:n, 0:m), g(0:n, 0:m))
 
 call regular_grid(V, n, m, a, b)
 g = sin(2 *pi*V%x) * sin(2*pi*V%y)
-write(*,*) V
-write(*,*) g
+!write(*,*) V
+!write(*,*) g
 
-open(newunit=uni, file ="output")
-do i = 0,m
-   write(uni,'(100(E12.5,1X))') g(:,i)
+open(newunit=uni, file = "output")
+do i = 0, m
+   do j = 0, n
+      write(uni, '(100(E12.5,1X))', advance='no') g(j,i)
+   end do
+   write(uni, *)
 end do
 close(uni)
 deallocate (V, g)

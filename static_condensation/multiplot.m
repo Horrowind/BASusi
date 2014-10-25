@@ -1,6 +1,13 @@
+#!/usr/bin/octave -q
 % load the result
-inp = load('build/input');
-outp = load('build/output');
+
+arg_list = argv ();
+filein = arg_list{1};
+fileout = arg_list{2};
+fileprint = arg_list{3};
+
+inp = load(filein);
+outp = load(fileout);
 
 n   = inp(1)
 m   = inp(2)
@@ -47,4 +54,4 @@ grid 'on';
 
 %legend({'Numerical solution','Normalized entropy viscosity','Normalized entropy residual'});
 
-print(h, 'output.pdf')
+print(h, fileprint)
