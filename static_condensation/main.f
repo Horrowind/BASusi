@@ -1,9 +1,7 @@
 program StaticCondensation
 
+use utilities
 implicit none
-use module utilities
-
-
 
 ! variables
 
