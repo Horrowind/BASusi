@@ -3,7 +3,6 @@ program StaticCondensation
 use utilities
 implicit none
 
-
 ! variables
 
 type(Point), dimension(:,:), allocatable :: V    ! grid
